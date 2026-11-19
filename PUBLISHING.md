@@ -67,10 +67,8 @@ method.
 3. Click **Visit site**, or open:
 
 ```text
-https://YOUR-GITHUB-USERNAME.github.io/bean-hub-coffee/
+https://13965217170.github.io/bean-hub-coffee/
 ```
-
-Replace `YOUR-GITHUB-USERNAME` with the GitHub account that owns the repository.
 
 ## Step 5 — Test before submitting
 
@@ -110,8 +108,8 @@ Open the live URL in a **private/incognito** window, without being logged in to 
 ```text
 Student Name:  ____________________________________________
 Student ID:    ____________________________________________
-Repository:    https://github.com/YOUR-GITHUB-USERNAME/bean-hub-coffee
-Live website:  https://YOUR-GITHUB-USERNAME.github.io/bean-hub-coffee/
+Repository:    https://github.com/13965217170/bean-hub-coffee
+Live website:  https://13965217170.github.io/bean-hub-coffee/
 ```
 
 ## Final reminder

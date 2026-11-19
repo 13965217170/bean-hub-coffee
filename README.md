@@ -5,11 +5,8 @@ A single-page multimedia website for a small community coffee shop, built for
 
 **HTML5 + CSS3 only.** No JavaScript, no carousel, no backend, no database and no login system.
 
-> **Live site:** `https://YOUR-GITHUB-USERNAME.github.io/bean-hub-coffee/`
-> **Repository:** `https://github.com/YOUR-GITHUB-USERNAME/bean-hub-coffee`
->
-> Replace the two placeholders above after publishing. The repository name used in this guide is
-> `bean-hub-coffee`.
+> **Live site:** <https://13965217170.github.io/bean-hub-coffee/>
+> **Repository:** <https://github.com/13965217170/bean-hub-coffee>
 
 ![Bean Hub Coffee desktop and mobile preview](site-preview.png)
 
@@ -65,16 +62,16 @@ iframe. If YouTube is blocked, use the “Watch on YouTube” fallback link unde
 bean-hub-coffee/
 ├── index.html                  # single landing page, HTML + comments
 ├── style.css                   # complete external stylesheet
-├── design/                     # wireframes, palette, typography and site preview
-├── evidence/                   # desktop / tablet / mobile screenshots and test results
-├── ICT2215_A2_BeanHub_Coffee_Design_Plan.docx
-├── ICT2215_A2_BeanHub_Coffee_Design_Plan.pdf
+├── site-preview.png            # desktop and mobile preview used in this README
 ├── README.md
 ├── CREDITS.md                  # third-party assets and licences
 ├── LICENSE                     # MIT licence for original code and documentation
-├── PUBLISHING.md               # GitHub Pages checklist for this project
-└── .nojekyll                   # tells GitHub Pages to serve the files as-is
+└── PUBLISHING.md               # GitHub Pages checklist for this project
 ```
+
+The full design portfolio — wireframes, colour/type boards, screenshots, the 55-page design plan
+and the demonstration script — is kept in the local assessment submission folder and is not required
+for the live website.
 
 ## Publish with GitHub Pages
 
@@ -88,7 +85,7 @@ The full beginner workflow is in [`PUBLISHING.md`](PUBLISHING.md). The short ver
 6. Wait for the deployment message and open:
 
 ```text
-https://YOUR-GITHUB-USERNAME.github.io/bean-hub-coffee/
+https://13965217170.github.io/bean-hub-coffee/
 ```
 
 Do not put `index.html` inside another folder — GitHub Pages must find it at the repository root.
