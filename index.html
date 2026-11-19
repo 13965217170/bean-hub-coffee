@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Bean Hub Coffee is a small neighbourhood café near Riverside campus, serving students and nearby office workers with good coffee, student-friendly prices and a table that always has room.">
+  <meta name="theme-color" content="#F6EFE4">
+  <title>Bean Hub Coffee | Your third place between campus and desk</title>
+
+  <!-- Tiny inline SVG favicon: prevents a 404 request for favicon.ico
+       and keeps the brand mark visible in the browser tab. -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='16' fill='%232A211C'/%3E%3Cellipse cx='16' cy='16' rx='7' ry='11' transform='rotate(45 16 16)' fill='none' stroke='%23F6EFE4' stroke-width='2'/%3E%3Cpath d='M11 21c3-1.2 5.3-3.5 6.5-6.5' fill='none' stroke='%23F6EFE4' stroke-width='2'/%3E%3C/svg%3E">
+
+  <!--
+    ============================================================
+    ICT2215 WEB DESIGN AND DEVELOPMENT WITH MULTIMEDIA
+    Assessment 2 — Project (40%) · Set A · Individual
+    Website: Bean Hub Coffee
+    Technology: HTML5 + CSS3 only
+    NO JavaScript, NO carousel, NO backend, NO database, NO login.
+    ============================================================
+    FILE STRUCTURE
+    /index.html          -> this file
+    /style.css           -> all styling and responsive rules
+    /design/             -> wireframe, palette plan and design document
+    /evidence/           -> desktop and mobile screenshots
+
+    PLACEHOLDER ASSETS
+    The photographs use free-to-use Unsplash placeholder URLs and the
+    video uses a YouTube placeholder embed. Replace the URLs in the
+    src attributes if you want to use your own photographs or clip.
+    Every image has descriptive alt text for accessibility.
+  -->
+
+  <!-- Google Fonts: Fraunces (display) + DM Sans (body).
+       A font stack fallback is provided in style.css in case the
+       connection is unavailable during the demonstration. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&display=swap" rel="stylesheet">
+
+  <!-- Single external stylesheet. All layout, colour, type and
+       responsive rules are kept in this one CSS file. -->
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <!-- ==========================================================
+       INLINE SVG ICON SPRITE
+       One hidden SVG stores all icons as <symbol> elements.
+       Reusing <use href="#icon-name"> keeps the HTML tidy and
+       provides more than the required three graphical elements.
+       ========================================================== -->
+  <svg class="icon-sprite" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <defs>
+      <!-- Coffee bean: brand mark and small decorative accents -->
+      <symbol id="icon-bean" viewBox="0 0 24 24">
+        <ellipse cx="12" cy="12" rx="6.4" ry="9.2" transform="rotate(45 12 12)"></ellipse>
+        <path d="M8.2 15.8c2.7-1.1 4.8-3.2 5.9-5.9"></path>
+      </symbol>
+
+      <!-- Takeaway cup -->
+      <symbol id="icon-cup" viewBox="0 0 24 24">
+        <path d="M5 8h11v4.5A5.5 5.5 0 0 1 10.5 18h0A5.5 5.5 0 0 1 5 12.5V8Z"></path>
+        <path d="M16 9.5h1.3a2.2 2.2 0 0 1 0 4.4H16"></path>
+        <path d="M8 4.5V3M12 4.5V3"></path>
+      </symbol>
+
+      <!-- Wi-Fi -->
+      <symbol id="icon-wifi" viewBox="0 0 24 24">
+        <path d="M3 8.5a14 14 0 0 1 18 0"></path>
+        <path d="M6.4 12a9.2 9.2 0 0 1 11.2 0"></path>
+        <path d="M9.8 15.5a4.4 4.4 0 0 1 4.4 0"></path>
+        <path d="M12 19h.01"></path>
+      </symbol>
+
+      <!-- Clock -->
+      <symbol id="icon-clock" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="9"></circle>
+        <path d="M12 7v5l3.2 2"></path>
+      </symbol>
+
+      <!-- People / community -->
+      <symbol id="icon-users" viewBox="0 0 24 24">
+        <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+        <circle cx="9" cy="7" r="4"></circle>
+        <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
+        <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+      </symbol>
+
+      <!-- Open book / study -->
+      <symbol id="icon-book" viewBox="0 0 24 24">
+        <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+        <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2Z"></path>
+      </symbol>
+
+      <!-- Map pin -->
+      <symbol id="icon-pin" viewBox="0 0 24 24">
+        <path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"></path>
+        <circle cx="12" cy="10" r="2.8"></circle>
+      </symbol>
+
+      <!-- Phone -->
+      <symbol id="icon-phone" viewBox="0 0 24 24">
+        <path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.6a2 2 0 0 1-.5 2.1L8 9.6a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.5c.8.3 1.7.5 2.6.6a2 2 0 0 1 2.1 2.4Z"></path>
+      </symbol>
+
+      <!-- Email -->
+      <symbol id="icon-mail" viewBox="0 0 24 24">
+        <rect x="3" y="5" width="18" height="14" rx="2"></rect>
+        <path d="m3 7 9 6 9-6"></path>
+      </symbol>
+
+      <!-- Arrow: used in buttons and text links -->
+      <symbol id="icon-arrow" viewBox="0 0 24 24">
+        <path d="M5 12h14M13 6l6 6-6 6"></path>
+      </symbol>
+
+      <!-- Diagonal arrow: used for external links -->
+      <symbol id="icon-arrow-up-right" viewBox="0 0 24 24">
+        <path d="M7 17 17 7M8 7h9v9"></path>
+      </symbol>
+
+      <!-- Tick: used in lists and the hero note -->
+      <symbol id="icon-check" viewBox="0 0 24 24">
+        <path d="m5 12 4.5 4.5L19 6.5"></path>
+      </symbol>
+    </defs>
+  </svg>
+
+  <!-- Keyboard users can jump straight to the main content. -->
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <!-- ==========================================================
+       SITE HEADER / NAVIGATION
+       Sticky header keeps the four internal links visible.
+       Each link points to a section ID on this same page.
+       ========================================================== -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="#home" aria-label="Bean Hub Coffee — back to the home section">
+        <span class="brand-mark" aria-hidden="true">
+          <svg class="icon" focusable="false"><use href="#icon-bean"></use></svg>
+        </span>
+        <span class="brand-text">
+          <strong>Bean Hub</strong>
+          <span>Coffee</span>
+        </span>
+      </a>
+
+      <!-- Primary navigation: exactly the four required areas. -->
+      <nav class="site-nav" aria-label="Primary navigation">
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#menu">Menu</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+
+      <a class="header-cta" href="#contact">
+        <span>Find us</span>
+        <svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-arrow-up-right"></use></svg>
+      </a>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- ========================================================
+         01. HOME / HERO
+         Left: message and calls to action. Right: hero image.
+         Below: a three-item facts strip that repeats the icons.
+         ======================================================== -->
+    <section class="hero" id="home" aria-labelledby="hero-title">
+      <div class="container">
+        <div class="hero-grid">
+          <div class="hero-copy">
+            <p class="eyebrow">
+              <span class="eyebrow-dot" aria-hidden="true"></span>
+              Neighbourhood coffee · since 2019
+            </p>
+
+            <h1 id="hero-title">Good coffee.<br><em>Better mornings.</em></h1>
+
+            <p class="lede">
+              Bean Hub is the small café around the corner from campus — a calm place to reset
+              between lectures, meetings and everything in between. Fair-trade beans,
+              student-friendly prices and a table that always has room.
+            </p>
+
+            <div class="hero-actions">
+              <a class="btn btn-primary" href="#menu">
+                Explore the menu
+                <svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-arrow"></use></svg>
+              </a>
+              <a class="btn btn-ghost" href="#contact">Find the café</a>
+            </div>
+
+            <p class="hero-note">
+              <svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-check"></use></svg>
+              No booking needed. Just come in.
+            </p>
+          </div>
+
+          <figure class="hero-figure">
+            <!-- PLACEHOLDER IMAGE 1/6 — Unsplash, free to use.
+                 Width/height attributes reserve space to reduce layout shift. -->
+            <img
+              src="https://images.unsplash.com/photo-1445116572660-236099ec97a0?auto=format&fit=crop&w=1200&q=80"
+              alt="A sunlit café table with a French press, two cups and a small potted plant"
+              width="1200" height="800" fetchpriority="high">
+
+            <figcaption class="hero-caption">
+              <span class="hero-caption-label">Today's brew</span>
+              <strong>Honey Oat Latte</strong>
+              <span class="hero-caption-price">$4.80</span>
+            </figcaption>
+
+            <!-- Purely decorative circular stamp; hidden from screen readers. -->
+            <span class="hero-stamp" aria-hidden="true">Freshly<br>roasted</span>
+          </figure>
+        </div>
+
+        <!-- Three quick reasons to choose Bean Hub. These repeat the icon
+             style used elsewhere, supporting the principle of repetition. -->
+        <ul class="hero-facts" aria-label="Bean Hub highlights">
+          <li>
+            <svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-cup"></use></svg>
+            <div>
+              <strong>Student-friendly</strong>
+              <span>10% off with a keep-cup</span>
+            </div>
+          </li>
+          <li>
+            <svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-wifi"></use></svg>
+            <div>
+              <strong>Fast Wi-Fi</strong>
+              <span>Power points at every seat</span>
+            </div>
+          </li>
+          <li>
+            <svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-clock"></use></svg>
+            <div>
+              <strong>Open weekdays</strong>
+              <span>7:30 — 18:00</span>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ========================================================
+         02. ABOUT
+         A two-column split: photograph on the left, story and
+         three statistics on the right. The dark quote card breaks
+         up the warm background and adds visual contrast.
+         ======================================================== -->
+    <section class="section about" id="about" aria-labelledby="about-title">
+      <div class="container split">
+        <figure class="about-figure">
+          <!-- PLACEHOLDER IMAGE 2/6 -->
+          <img
+            src="https://images.unsplash.com/photo-1521017432531-fbd92d768814?auto=format&fit=crop&w=1200&q=80"
+            alt="The open dining room at Bean Hub with wooden tables, hanging lights and a coffee bar"
+            width="1200" height="800" loading="lazy" decoding="async">
+
+          <figcaption class="about-note">
+            <p class="about-quote">“The best ideas start with a flat white.”</p>
+            <p class="about-credit">Maya — founder</p>
+          </figcaption>
+        </figure>
+
+        <div class="about-copy">
+          <p class="eyebrow">Our story</p>
+          <h2 id="about-title">A small café with a big table.</h2>
+
+          <p>
+            We opened Bean Hub in 2019 with one espresso machine, a second-hand sofa and a
+            simple idea: the best cafés feel like someone saved you a seat. Today we still
+            roast in small batches, source milk from a family dairy forty minutes away and
+            keep the long table free for study groups, first dates and Friday pitch rehearsals.
+          </p>
+          <p>
+            Whether you have ten minutes between lectures or an afternoon of deadlines,
+            there is a corner here for you. Order at the bar, choose a seat and stay as long
+            as you need.
+          </p>
+
+          <div class="stats" aria-label="Bean Hub at a glance">
+            <div class="stat">
+              <strong>7:30</strong>
+              <span>Doors open, Monday to Friday</span>
+            </div>
+            <div class="stat">
+              <strong>40</strong>
+              <span>Seats — no booking needed</span>
+            </div>
+            <div class="stat">
+              <strong>12</strong>
+              <span>Local suppliers we know by name</span>
+            </div>
+          </div>
+
+          <a class="text-link" href="#contact">
+            Come and say hello
+            <svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-arrow"></use></svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================
+         03. PRODUCTS / SERVICES
+         Four product cards for the core menu, followed by three
+         service cards that speak directly to students and office
+         workers. The grid changes from four to two to one column.
+         ======================================================== -->
+    <section class="section menu" id="menu" aria-labelledby="menu-title">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Products &amp; services</p>
+            <h2 id="menu-title">Made for the way you work.</h2>
+          </div>
+          <p class="section-intro">
+            From a quick flat white to a four-hour study session, everything here is designed
+            to keep you going — without asking you to leave.
+          </p>
+        </div>
+
+        <div class="menu-grid">
+          <!-- Product 1: PLACEHOLDER IMAGE 3/6 -->
+          <article class="menu-card">
+            <img
+              src="https://images.unsplash.com/photo-1510707577719-ae7c14805e3a?auto=format&fit=crop&w=800&q=80"
+              alt="A double espresso in a white cup with a rich golden crema"
+              width="800" height="600" loading="lazy" decoding="async">
+            <div class="menu-card-body">
+              <div class="menu-card-head">
+                <h3>House Espresso</h3>
+                <span class="price">$3.20</span>
+              </div>
+              <p>Double shot of our house blend. Dark chocolate, toasted hazelnut and a clean finish.</p>
+              <span class="tag">House staple</span>
+            </div>
+          </article>
+
+          <!-- Product 2: PLACEHOLDER IMAGE 4/6 -->
+          <article class="menu-card">
+            <img
+              src="https://images.unsplash.com/photo-1541167760496-1628856ab772?auto=format&fit=crop&w=800&q=80"
+              alt="Steamed milk being poured into a latte to create leaf-pattern latte art"
+              width="800" height="600" loading="lazy" decoding="async">
+            <div class="menu-card-body">
+              <div class="menu-card-head">
+                <h3>Honey Oat Latte</h3>
+                <span class="price">$4.80</span>
+              </div>
+              <p>Silky oat milk, local honey and a double shot. Sweet without being a dessert.</p>
+              <span class="tag">Most popular</span>
+            </div>
+          </article>
+
+          <!-- Product 3: PLACEHOLDER IMAGE 5/6 -->
+          <article class="menu-card">
+            <img
+              src="https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=800&q=80"
+              alt="Freshly baked butter croissants dusted with flour on a dark surface"
+              width="800" height="640" loading="lazy" decoding="async">
+            <div class="menu-card-body">
+              <div class="menu-card-head">
+                <h3>Butter Croissant</h3>
+                <span class="price">$3.60</span>
+              </div>
+              <p>Baked at 6am every morning. Flaky, warm and best with a flat white.</p>
+              <span class="tag">Baked daily</span>
+            </div>
+          </article>
+
+          <!-- Product 4: PLACEHOLDER IMAGE 6/6 -->
+          <article class="menu-card">
+            <img
+              src="https://images.unsplash.com/photo-1447933601403-0c6688de566e?auto=format&fit=crop&w=800&q=80"
+              alt="A close-up of freshly roasted brown coffee beans"
+              width="800" height="610" loading="lazy" decoding="async">
+            <div class="menu-card-body">
+              <div class="menu-card-head">
+                <h3>House Beans</h3>
+                <span class="price">$14.00</span>
+              </div>
+              <p>A 250g bag of our seasonal blend, ground to order. Take the café home.</p>
+              <span class="tag">Take home</span>
+            </div>
+          </article>
+        </div>
+
+        <p class="menu-note">
+          Oat, soy and almond milk +$0.60 · Decaf available · 10% off with a keep-cup.
+        </p>
+
+        <!-- Services are part of the Products / Services section and
+             share the same card language and icon treatment. -->
+        <div class="services" id="services" aria-labelledby="services-title">
+          <div class="services-head">
+            <h3 id="services-title">More than a coffee counter.</h3>
+            <p>Three reasons students and local teams make Bean Hub part of their week.</p>
+          </div>
+
+          <div class="services-grid">
+            <article class="service-card">
+              <span class="service-icon" aria-hidden="true">
+                <svg class="icon" focusable="false"><use href="#icon-book"></use></svg>
+              </span>
+              <h4>Study sessions</h4>
+              <p>Long table, fast Wi-Fi and plugs at every seat. Stay for one chapter or the whole afternoon.</p>
+            </article>
+
+            <article class="service-card">
+              <span class="service-icon" aria-hidden="true">
+                <svg class="icon" focusable="false"><use href="#icon-users"></use></svg>
+              </span>
+              <h4>Small meetings</h4>
+              <p>A quieter corner for up to six people. No booking fee — just order at the bar and settle in.</p>
+            </article>
+
+            <article class="service-card">
+              <span class="service-icon" aria-hidden="true">
+                <svg class="icon" focusable="false"><use href="#icon-users"></use></svg>
+              </span>
+              <h4>Coffee catering</h4>
+              <p>Freshly brewed boxes for seminars, workshops and team mornings. Please give us 24 hours' notice.</p>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================
+         04. VIDEO
+         One responsive 16:9 YouTube iframe. The dark band is a
+         deliberate contrast break between the menu and contact.
+         ======================================================== -->
+    <section class="section video-section" id="video" aria-labelledby="video-title">
+      <div class="container video-grid">
+        <div class="video-copy">
+          <p class="eyebrow">Behind the bar</p>
+          <h2 id="video-title">See how we make the morning rush feel calm.</h2>
+          <p>
+            Our baristas pull every shot to order and steam milk to order. Watch a short
+            milk-steaming demonstration from our training session, then come and taste the
+            difference for yourself.
+          </p>
+
+          <ul class="check-list">
+            <li>
+              <svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-check"></use></svg>
+              <span><strong>18-second espresso pulls</strong> — dialled in every morning.</span>
+            </li>
+            <li>
+              <svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-check"></use></svg>
+              <span><strong>Silky microfoam</strong> — local dairy, steamed to order.</span>
+            </li>
+            <li>
+              <svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-check"></use></svg>
+              <span><strong>Ask for a practice pour</strong> — we are always happy to show you.</span>
+            </li>
+          </ul>
+
+          <p class="video-note">
+            Video placeholder embedded from YouTube.
+            <a href="https://www.youtube.com/watch?v=6YMgB61WyvE" target="_blank" rel="noopener noreferrer">
+              Watch on YouTube
+              <svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-arrow-up-right"></use></svg>
+            </a>
+          </p>
+        </div>
+
+        <div class="video-frame">
+          <!--
+            PLACEHOLDER VIDEO — replace 6YMgB61WyvE with your own
+            YouTube video ID. The iframe is responsive because CSS
+            sets width: 100% and aspect-ratio: 16 / 9.
+          -->
+          <iframe
+            src="https://www.youtube.com/embed/6YMgB61WyvE?rel=0"
+            title="Barista tutorial: steaming milk for latte art"
+            loading="lazy"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen></iframe>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================
+         05. CONTACT
+         Left: real-world visit information. Right: a complete
+         HTML form that is DISPLAY ONLY. The button is type="button"
+         so no data can be submitted without JavaScript or backend.
+         ======================================================== -->
+    <section class="section contact" id="contact" aria-labelledby="contact-title">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Contact</p>
+            <h2 id="contact-title">Come for the coffee. Stay for the table.</h2>
+          </div>
+          <p class="section-intro">
+            Two minutes from Riverside campus and a short walk from the office district.
+            Drop in, or send us a note before you visit.
+          </p>
+        </div>
+
+        <div class="contact-grid">
+          <div class="contact-info">
+            <h3>Drop in, slow down.</h3>
+            <p>
+              We are a small team, so the quickest way to reach us is usually to walk in.
+              For catering or group questions, use the form and we will get back to you.
+            </p>
+
+            <ul class="contact-list">
+              <li>
+                <span class="contact-icon" aria-hidden="true">
+                  <svg class="icon" focusable="false"><use href="#icon-pin"></use></svg>
+                </span>
+                <div>
+                  <span class="contact-label">Address</span>
+                  <address>
+                    14 Willow Lane, Riverside 2008<br>
+                    Next to the campus bicycle racks
+                  </address>
+                  <a class="inline-link" href="https://maps.google.com/?q=14+Willow+Lane+Riverside" target="_blank" rel="noopener noreferrer">
+                    Get directions
+                    <svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-arrow-up-right"></use></svg>
+                  </a>
+                </div>
+              </li>
+
+              <li>
+                <span class="contact-icon" aria-hidden="true">
+                  <svg class="icon" focusable="false"><use href="#icon-clock"></use></svg>
+                </span>
+                <div>
+                  <span class="contact-label">Opening hours</span>
+                  <p>Monday – Friday: 7:30 – 18:00<br>Saturday: 8:00 – 16:00<br>Sunday: closed</p>
+                </div>
+              </li>
+
+              <li>
+                <span class="contact-icon" aria-hidden="true">
+                  <svg class="icon" focusable="false"><use href="#icon-phone"></use></svg>
+                </span>
+                <div>
+                  <span class="contact-label">Phone</span>
+                  <p><a href="tel:+61255501482">(02) 5550 1482</a></p>
+                </div>
+              </li>
+
+              <li>
+                <span class="contact-icon" aria-hidden="true">
+                  <svg class="icon" focusable="false"><use href="#icon-mail"></use></svg>
+                </span>
+                <div>
+                  <span class="contact-label">Email</span>
+                  <p><a href="mailto:hello@beanhub.example">hello@beanhub.example</a></p>
+                </div>
+              </li>
+            </ul>
+
+            <div class="social-links" aria-label="Social media placeholders">
+              <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer">Instagram</a>
+              <a href="https://www.tiktok.com/" target="_blank" rel="noopener noreferrer">TikTok</a>
+              <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer">Facebook</a>
+            </div>
+          </div>
+
+          <form class="contact-form" aria-labelledby="form-title">
+            <div class="form-head">
+              <h3 id="form-title">Send a note</h3>
+              <span class="form-pill">Display only</span>
+            </div>
+
+            <p class="form-intro">
+              Questions about catering, a lost keep-cup or a study group booking?
+              Leave a message below.
+            </p>
+
+            <div class="form-row">
+              <div class="form-field">
+                <label for="name">Name</label>
+                <input id="name" name="name" type="text" placeholder="Your name" autocomplete="name">
+              </div>
+
+              <div class="form-field">
+                <label for="email">Email</label>
+                <input id="email" name="email" type="email" placeholder="you@example.com" autocomplete="email">
+              </div>
+            </div>
+
+            <div class="form-field">
+              <label for="topic">I'm writing about</label>
+              <select id="topic" name="topic">
+                <option value="general">General question</option>
+                <option value="study">Study group booking</option>
+                <option value="catering">Coffee catering</option>
+                <option value="feedback">Feedback</option>
+              </select>
+            </div>
+
+            <div class="form-field">
+              <label for="message">Message</label>
+              <textarea id="message" name="message" rows="5" placeholder="How can we help?"></textarea>
+            </div>
+
+            <!-- type="button" is intentional: it does NOT submit.
+                 No JavaScript is used anywhere on this page. -->
+            <button class="btn btn-primary form-submit" type="button" aria-describedby="form-note">
+              Send message
+              <svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-arrow"></use></svg>
+            </button>
+
+            <p class="form-note" id="form-note">
+              This form is for display only. No data is sent, stored or shared.
+            </p>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ==========================================================
+       FOOTER
+       Repeats the brand, the four page links, contact details and
+       opening hours. This gives the page a clear close and offers
+       a second route to the same information (repetition).
+       ========================================================== -->
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <a class="brand" href="#home" aria-label="Bean Hub Coffee — back to top">
+          <span class="brand-mark" aria-hidden="true">
+            <svg class="icon" focusable="false"><use href="#icon-bean"></use></svg>
+          </span>
+          <span class="brand-text">
+            <strong>Bean Hub</strong>
+            <span>Coffee</span>
+          </span>
+        </a>
+        <p>
+          Your third place between campus and desk. Small-batch coffee,
+          a long table and a warm welcome.
+        </p>
+      </div>
+
+      <nav class="footer-nav" aria-label="Footer navigation">
+        <h3>Explore</h3>
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#menu">Menu</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="footer-contact">
+        <h3>Visit</h3>
+        <address>
+          14 Willow Lane, Riverside 2008<br>
+          <a href="tel:+61255501482">(02) 5550 1482</a><br>
+          <a href="mailto:hello@beanhub.example">hello@beanhub.example</a>
+        </address>
+        <p>Mon–Fri 7:30–18:00 · Sat 8:00–16:00</p>
+      </div>
+    </div>
+
+    <div class="container footer-bottom">
+      <p>© 2026 Bean Hub Coffee. Student project for ICT2215 Assessment 2.</p>
+      <p>Made with HTML &amp; CSS only. <a href="#home">Back to top ↑</a></p>
+    </div>
+  </footer>
+</body>
+</html>
