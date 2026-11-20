@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Bean Hub Coffee — Usability Test</title>
+<style>
+  :root{
+    --espresso:#2A211C; --terra:#A64B28; --terra-dark:#8B3B1F;
+    --oat:#F6EFE4; --cream:#FFF9F1; --ink:#2B2724; --muted:#5E554E;
+    --line:#D8D0C4; --sage:#596B54; --gold:#D8A24A;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--oat);color:var(--ink);font-family:Arial,Helvetica,sans-serif;line-height:1.55}
+  header{background:var(--espresso);color:var(--cream);padding:18px 0}
+  .wrap{width:min(900px,calc(100% - 2rem));margin-inline:auto}
+  .brand{display:flex;align-items:center;gap:10px;font-family:Georgia,serif;font-size:1.2rem}
+  .mark{width:34px;height:34px;border-radius:50%;background:var(--cream);color:var(--espresso);display:grid;place-items:center;font-size:1rem;font-weight:700}
+  .brand span small{display:block;font-family:Arial,sans-serif;font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,249,241,.65);margin-top:2px}
+  h1,h2,h3{font-family:Georgia,serif;line-height:1.1;margin:0}
+  h1{font-size:clamp(2rem,5vw,3rem);letter-spacing:-.025em;margin:22px 0 8px;color:var(--espresso)}
+  h2{font-size:1.25rem;color:var(--espresso);margin-bottom:4px}
+  h3{font-size:1rem;margin-bottom:10px}
+  p{margin:0 0 10px}
+  .hero{padding:12px 0 8px}
+  .eyebrow{font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--terra);font-weight:700}
+  .lede{max-width:62ch;color:var(--muted)}
+  .note{background:#FFF2CC;border:1px solid #E6C96A;border-radius:12px;padding:12px 14px;font-size:.82rem;color:#5E4A00;margin:14px 0}
+  .site-link{display:inline-flex;align-items:center;gap:6px;background:var(--terra);color:#fff;text-decoration:none;font-weight:700;padding:10px 14px;border-radius:999px;margin:4px 0 20px}
+  .site-link:hover{background:var(--terra-dark)}
+  form{padding-bottom:30px}
+  .card{background:var(--cream);border:1px solid var(--line);border-radius:18px;padding:20px;margin:14px 0}
+  .hint{font-size:.8rem;color:var(--muted);margin:4px 0 14px}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  label.field{display:grid;gap:5px;font-size:.8rem;font-weight:700}
+  select,textarea,input[type="text"]{width:100%;min-width:0;border:1px solid #C9BDB0;border-radius:9px;background:#fff;padding:10px 11px;font:inherit;font-size:.9rem;color:var(--ink)}
+  select:focus,textarea:focus,input:focus{outline:3px solid rgba(166,75,40,.18);border-color:var(--terra)}
+  textarea{resize:vertical}
+  .check{display:flex;gap:9px;align-items:flex-start;padding:7px 0;font-size:.9rem}
+  .check input{margin-top:3px;accent-color:var(--terra);flex:none}
+  fieldset.rating{border:0;padding:12px 0;margin:0;border-bottom:1px solid var(--line)}
+  fieldset.rating:last-of-type{border-bottom:0}
+  fieldset.rating legend{font-size:.9rem;font-weight:700;margin-bottom:8px}
+  .scale{display:flex;gap:6px}
+  .scale label{flex:1;position:relative}
+  .scale input{position:absolute;opacity:0;width:1px;height:1px}
+  .scale span{display:grid;place-items:center;min-height:42px;border:1px solid #C9BDB0;border-radius:8px;background:#fff;font-weight:700;font-size:.85rem;cursor:pointer}
+  .scale input:checked + span{background:var(--terra);border-color:var(--terra);color:#fff}
+  .scale input:focus-visible + span{outline:3px solid rgba(166,75,40,.3);outline-offset:2px}
+  .actions{display:flex;flex-wrap:wrap;gap:9px;margin-top:10px}
+  button{border:0;border-radius:999px;padding:11px 16px;font:inherit;font-size:.88rem;font-weight:700;cursor:pointer}
+  .primary{background:var(--terra);color:#fff}
+  .primary:hover{background:var(--terra-dark)}
+  .secondary{background:var(--espresso);color:var(--cream)}
+  #output{min-height:240px;font-family:Consolas,monospace;font-size:.8rem;background:#fff}
+  #copyStatus{font-size:.78rem;color:var(--sage);margin-top:8px}
+  [hidden]{display:none!important}
+  footer{padding:18px 0 34px;color:var(--muted);font-size:.72rem;text-align:center}
+  @media(max-width:560px){
+    .wrap{width:calc(100% - 1.25rem)}
+    .grid2{grid-template-columns:1fr}
+    .card{padding:15px}
+    .scale{gap:4px}
+    .scale span{min-height:44px;font-size:.8rem}
+  }
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap brand">
+    <span class="mark" aria-hidden="true">B</span>
+    <span>Bean Hub Coffee<small>usability test</small></span>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="hero">
+    <p class="eyebrow">ICT2215 · Assessment 3</p>
+    <h1>Bean Hub Coffee — website feedback</h1>
+    <p class="lede">Please open the live website in another tab, try five short tasks, then answer the questions below. It takes about 5–10 minutes. This form is anonymous; do not enter personal information.</p>
+    <a class="site-link" href="https://13965217170.github.io/bean-hub-coffee/" target="_blank" rel="noopener">Open the website in a new tab ↗</a>
+    <div class="note"><strong>Testing tool only.</strong> This page is separate from the submitted ICT2215 website. It does not send data automatically. At the end, copy your response and send it to the researcher.</div>
+  </section>
+
+  <form id="survey">
+    <div class="card">
+      <h2>1. About you</h2>
+      <p class="hint">Use the participant code given by the researcher. Do not write your name.</p>
+      <div class="grid2">
+        <label class="field">Participant code
+          <select id="code" name="code" required>
+            <option value="">Choose…</option>
+            <option>P1</option><option>P2</option><option>P3</option>
+          </select>
+        </label>
+        <label class="field">I am a…
+          <select id="audience" name="audience" required>
+            <option value="">Choose…</option>
+            <option>University student</option>
+            <option>Office worker</option>
+            <option>Other target user</option>
+          </select>
+        </label>
+      </div>
+      <label class="field" style="margin-top:12px;">Device used
+        <select id="device" name="device" required>
+          <option value="">Choose…</option>
+          <option>Phone</option><option>Tablet</option><option>Laptop / desktop</option>
+        </select>
+      </label>
+    </div>
+
+    <div class="card">
+      <h2>2. Tasks completed</h2>
+      <p class="hint">Tick each task you completed without help. Leave a task unticked if you could not find it.</p>
+      <label class="check"><input type="checkbox" name="task" value="T1 — Latte price"> T1. Found the Honey Oat Latte price ($4.80)</label>
+      <label class="check"><input type="checkbox" name="task" value="T2 — Saturday hours"> T2. Found Saturday opening hours (8:00–16:00)</label>
+      <label class="check"><input type="checkbox" name="task" value="T3 — Address and directions"> T3. Found the address and opened the directions link</label>
+      <label class="check"><input type="checkbox" name="task" value="T4 — Student discount"> T4. Found the student discount (10% with a keep-cup)</label>
+      <label class="check"><input type="checkbox" name="task" value="T5 — Contact form"> T5. Completed the contact form fields and clicked the message button</label>
+    </div>
+
+    <div class="card">
+      <h2>3. Ratings</h2>
+      <p class="hint">1 = strongly disagree, 5 = strongly agree. All seven ratings are required.</p>
+
+      <fieldset class="rating">
+        <legend>R1. The navigation menu is easy to use.</legend>
+        <div class="scale" role="radiogroup" aria-label="R1 rating">
+          <label><input type="radio" name="R1" value="1" required><span>1</span></label>
+          <label><input type="radio" name="R1" value="2"><span>2</span></label>
+          <label><input type="radio" name="R1" value="3"><span>3</span></label>
+          <label><input type="radio" name="R1" value="4"><span>4</span></label>
+          <label><input type="radio" name="R1" value="5"><span>5</span></label>
+        </div>
+      </fieldset>
+
+      <fieldset class="rating">
+        <legend>R2. The information is clear and easy to understand.</legend>
+        <div class="scale" role="radiogroup" aria-label="R2 rating">
+          <label><input type="radio" name="R2" value="1" required><span>1</span></label>
+          <label><input type="radio" name="R2" value="2"><span>2</span></label>
+          <label><input type="radio" name="R2" value="3"><span>3</span></label>
+          <label><input type="radio" name="R2" value="4"><span>4</span></label>
+          <label><input type="radio" name="R2" value="5"><span>5</span></label>
+        </div>
+      </fieldset>
+
+      <fieldset class="rating">
+        <legend>R3. The visual appearance is appropriate for a café.</legend>
+        <div class="scale" role="radiogroup" aria-label="R3 rating">
+          <label><input type="radio" name="R3" value="1" required><span>1</span></label>
+          <label><input type="radio" name="R3" value="2"><span>2</span></label>
+          <label><input type="radio" name="R3" value="3"><span>3</span></label>
+          <label><input type="radio" name="R3" value="4"><span>4</span></label>
+          <label><input type="radio" name="R3" value="5"><span>5</span></label>
+        </div>
+      </fieldset>
+
+      <fieldset class="rating">
+        <legend>R4. The page is easy to use overall.</legend>
+        <div class="scale" role="radiogroup" aria-label="R4 rating">
+          <label><input type="radio" name="R4" value="1" required><span>1</span></label>
+          <label><input type="radio" name="R4" value="2"><span>2</span></label>
+          <label><input type="radio" name="R4" value="3"><span>3</span></label>
+          <label><input type="radio" name="R4" value="4"><span>4</span></label>
+          <label><input type="radio" name="R4" value="5"><span>5</span></label>
+        </div>
+      </fieldset>
+
+      <fieldset class="rating">
+        <legend>R5. The text is readable on this screen.</legend>
+        <div class="scale" role="radiogroup" aria-label="R5 rating">
+          <label><input type="radio" name="R5" value="1" required><span>1</span></label>
+          <label><input type="radio" name="R5" value="2"><span>2</span></label>
+          <label><input type="radio" name="R5" value="3"><span>3</span></label>
+          <label><input type="radio" name="R5" value="4"><span>4</span></label>
+          <label><input type="radio" name="R5" value="5"><span>5</span></label>
+        </div>
+      </fieldset>
+
+      <fieldset class="rating">
+        <legend>R6. The images and video help me understand the café.</legend>
+        <div class="scale" role="radiogroup" aria-label="R6 rating">
+          <label><input type="radio" name="R6" value="1" required><span>1</span></label>
+          <label><input type="radio" name="R6" value="2"><span>2</span></label>
+          <label><input type="radio" name="R6" value="3"><span>3</span></label>
+          <label><input type="radio" name="R6" value="4"><span>4</span></label>
+          <label><input type="radio" name="R6" value="5"><span>5</span></label>
+        </div>
+      </fieldset>
+
+      <fieldset class="rating">
+        <legend>R7. The contact form is clearly labelled and easy to understand.</legend>
+        <div class="scale" role="radiogroup" aria-label="R7 rating">
+          <label><input type="radio" name="R7" value="1" required><span>1</span></label>
+          <label><input type="radio" name="R7" value="2"><span>2</span></label>
+          <label><input type="radio" name="R7" value="3"><span>3</span></label>
+          <label><input type="radio" name="R7" value="4"><span>4</span></label>
+          <label><input type="radio" name="R7" value="5"><span>5</span></label>
+        </div>
+      </fieldset>
+    </div>
+
+    <div class="card">
+      <h2>4. Open comments</h2>
+      <p class="hint">Optional, but very useful. Write in your own words.</p>
+      <label class="field" for="easiest">What was the easiest part of the website?</label>
+      <textarea id="easiest" name="easiest" rows="3" placeholder="For example: the menu prices were easy to find"></textarea>
+      <label class="field" for="confusing" style="margin-top:12px;">What was confusing or difficult?</label>
+      <textarea id="confusing" name="confusing" rows="3" placeholder="For example: I could not find the opening hours"></textarea>
+      <label class="field" for="improvement" style="margin-top:12px;">What is one improvement you would suggest?</label>
+      <textarea id="improvement" name="improvement" rows="3" placeholder="For example: make the hours more prominent"></textarea>
+    </div>
+
+    <div class="card">
+      <h2>5. Generate your response</h2>
+      <p class="hint">Nothing is sent automatically. Generate the text, copy it, and send it to the researcher.</p>
+      <button class="primary" type="button" id="generate">Generate my response</button>
+      <p id="formStatus" role="status" aria-live="polite"></p>
+    </div>
+  </form>
+
+  <section class="card" id="outputCard" hidden>
+    <h2>Your response</h2>
+    <p class="hint">Copy this text and send it to the researcher (WeChat, email or message).</p>
+    <textarea id="output" readonly></textarea>
+    <div class="actions">
+      <button class="primary" type="button" id="copy">Copy response</button>
+      <button class="secondary" type="button" id="download">Download .txt</button>
+    </div>
+    <p id="copyStatus" role="status" aria-live="polite"></p>
+  </section>
+
+  <footer>Testing tool for ICT2215 Assessment 3 · not part of the submitted website · no data is sent automatically</footer>
+</main>
+
+<script>
+(function () {
+  var form = document.getElementById('survey');
+  var outputCard = document.getElementById('outputCard');
+  var output = document.getElementById('output');
+  var status = document.getElementById('formStatus');
+  var copyStatus = document.getElementById('copyStatus');
+
+  function value(id) {
+    var el = document.getElementById(id);
+    return el && el.value ? el.value : '—';
+  }
+
+  function rating(name) {
+    var el = document.querySelector('input[name="' + name + '"]:checked');
+    return el ? el.value : '—';
+  }
+
+  function tasks() {
+    var checked = Array.prototype.slice.call(document.querySelectorAll('input[name="task"]:checked'));
+    return checked.length ? checked.map(function (el) { return el.value; }).join('; ') : 'None ticked';
+  }
+
+  function line(label, value) {
+    return label + ': ' + value;
+  }
+
+  document.getElementById('generate').addEventListener('click', function () {
+    if (!form.reportValidity()) {
+      status.textContent = 'Please complete the required fields (participant code, audience, device and all seven ratings).';
+      return;
+    }
+    status.textContent = '';
+    var text = [
+      'Bean Hub Coffee — usability response',
+      'Participant: ' + value('code'),
+      'Audience: ' + value('audience'),
+      'Device: ' + value('device'),
+      'Tasks completed: ' + tasks(),
+      '',
+      'R1 Navigation easy to use: ' + rating('R1'),
+      'R2 Information clear: ' + rating('R2'),
+      'R3 Visual appearance appropriate: ' + rating('R3'),
+      'R4 Easy to use overall: ' + rating('R4'),
+      'R5 Text readable: ' + rating('R5'),
+      'R6 Images and video helpful: ' + rating('R6'),
+      'R7 Contact form clear: ' + rating('R7'),
+      '',
+      'Easiest: ' + value('easiest'),
+      'Confusing: ' + value('confusing'),
+      'Improvement: ' + value('improvement')
+    ].join('\n');
+    output.value = text;
+    outputCard.hidden = false;
+    outputCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    output.focus();
+  });
+
+  document.getElementById('copy').addEventListener('click', function () {
+    if (!output.value) return;
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(output.value).then(function () {
+        copyStatus.textContent = 'Copied. Now send it to the researcher.';
+      }).catch(function () {
+        output.select();
+        document.execCommand('copy');
+        copyStatus.textContent = 'Copied. Now send it to the researcher.';
+      });
+    } else {
+      output.select();
+      document.execCommand('copy');
+      copyStatus.textContent = 'Copied. Now send it to the researcher.';
+    }
+  });
+
+  document.getElementById('download').addEventListener('click', function () {
+    if (!output.value) return;
+    var blob = new Blob([output.value], { type: 'text/plain;charset=utf-8' });
+    var a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'bean-hub-usability-' + value('code') + '.txt';
+    document.body.appendChild(a);
+    a.click();
+    setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 1000);
+  });
+})();
+</script>
+</body>
+</html>
